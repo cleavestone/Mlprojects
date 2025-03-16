@@ -21,9 +21,16 @@ def save_object(file_path,obj):
         logging.error(f"Error in saving object {str(e)}")
         raise CustomException(e,sys)
     
-from sklearn.model_selection import GridSearchCV
-from sklearn.metrics import r2_score
-import sys
+    
+def load_object(file_path):
+    try:
+        with open(file_path,'rb') as file:
+            obj=pickle.load(file)
+        return obj
+    except Exception as e:
+        logging.error(f"Error in loading object {str(e)}")
+        raise CustomException(e,sys)
+    
 
 def evaluate_models(X_train, y_train, X_test, y_test, models, params):
     try:
